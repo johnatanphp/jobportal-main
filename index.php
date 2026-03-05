@@ -60,6 +60,7 @@
         // Suppress PHP 8.2 dynamic property deprecation warnings from legacy CodeIgniter
         error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
         
+        define('SITE_URL', 'http://0.0.0.0:8000/');
         define('ENVIRONMENT',  'development');
         //define('ENVIRONMENT', 'production');
 /*
