@@ -1,18 +1,10 @@
-modules = ["php-8.2", "nodejs-20", "web"]
-[agent]
-expertMode = true
-
+modules = ["php"]
 [nix]
 channel = "stable-25_05"
-packages = ["mariadb", "unzip"]
+packages = ["unzip"]
 
-[[ports]]
-localPort = 3306
-externalPort = 80
-
-[[ports]]
-localPort = 5000
-externalPort = 80
+[agent]
+expertMode = true
 
 [workflows]
 runButton = "Project"
@@ -32,12 +24,4 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "bash /home/runner/workspace/start.sh"
-waitForPort = 5000
-
-[workflows.workflow.metadata]
-outputType = "webview"
-
-[deployment]
-deploymentTarget = "vm"
-run = ["bash", "/home/runner/workspace/start.sh"]
+args = "bash start.sh"
