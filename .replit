@@ -5,3 +5,7 @@ expertMode = true
 [nix]
 channel = "stable-25_05"
 packages = ["mariadb"]
+
+[[ports]]
+localPort = 3306
+externalPort = 80
