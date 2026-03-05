@@ -4,7 +4,7 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
-packages = ["mariadb"]
+packages = ["mariadb", "unzip"]
 
 [[ports]]
 localPort = 3306
