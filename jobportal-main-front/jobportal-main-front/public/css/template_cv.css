@@ -1,0 +1,98 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+body {
+	line-height:1;
+	color: #333;
+	font-family: 'rubik';
+}
+
+.table-header-tcv tr td {
+	padding: 3px;
+}
+
+.table-header-tcv .description-cv {
+	font-size: 14px;
+	padding: 4px 0px;
+}
+
+#content-main-tcv .panel-main {
+	margin-top: 10px;
+}
+
+.title-cv {
+
+	font-weight: bold;
+	font-size: 22px;
+	padding: 5px 0px;
+
+}
+
+.sub-title-cv {
+	font-size: 17px;
+	padding: 5px 0px;
+}
+
+.panel-category {
+
+	padding: 6px  5px 20px 5px;
+}
+
+.panel-category .panel-title {
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 8px;
+	border-bottom: 2px solid #333;
+	margin-bottom: 3px;
+	text-transform: uppercase;
+	
+}
+
+.panel-content {
+	padding: 5px 0px;
+}
+
+#content-main-tcv table {
+	width: 100%;
+}	
+
+.info-t1 {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.info-t3 {
+	color: #666;
+	padding-top: 5px;
+}
+
+.info-date {
+	font-size: 13px;
+	color: #555;
+	font-style: italic;
+}
+
+.panel-content .tbl-info-personal tr td {
+
+	padding: 8px 4px;
+	vertical-align: top;
+}
+
+.icon {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	margin: 0px 3px 0 0;
+}
