@@ -12,5 +12,5 @@
 4. **Dependencias**: PHP 8.3 y Composer instalados.
 
 ## Cómo ejecutar
-El proyecto se inicia automáticamente mediante el Workflow "Run Job Portal".
+El proyecto se inicia automáticamente.
 Comando manual: `php -S 0.0.0.0:8000 router.php`
