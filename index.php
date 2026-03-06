@@ -59,7 +59,6 @@
         date_default_timezone_set("America/Lima");
         // Suppress PHP 8.2 dynamic property deprecation warnings from legacy CodeIgniter
         error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
-        ini_set('memory_limit', '256M');
         
         define('ENVIRONMENT',  'development');
         //define('ENVIRONMENT', 'production');
@@ -106,7 +105,37 @@ switch (ENVIRONMENT)
  * Set the path if it is not in the same directory as this file.
  */
         $system_path = 'ca_sys';
+
+/*
+ *---------------------------------------------------------------
+ * APPLICATION DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * If you want this front controller to use a different "application"
+ * directory than the default one you can set its name here. The directory
+ * can also be renamed or relocated anywhere on your server. If you do,
+ * use an absolute (full) server path.
+ * For more info please see the user guide:
+ *
+ * https://codeigniter.com/user_guide/general/managing_apps.html
+ *
+ * NO TRAILING SLASH!
+ */
         $application_folder = 'ca_app';
+
+/*
+ *---------------------------------------------------------------
+ * VIEW DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * If you want to move the view directory out of the application
+ * directory, set the path to it here. The directory can be renamed
+ * and relocated anywhere on your server. If blank, it will default
+ * to the standard location inside your application directory.
+ * If you do move this, use an absolute (full) server path.
+ *
+ * NO TRAILING SLASH!
+ */
         $view_folder = '';
 
 
