@@ -1,0 +1,30 @@
+.form-group.fg-error label {
+  color: red;
+}
+
+.form-group.fg-error .fg-error-message {
+  color: red;
+}
+
+.form-group.fg-error .select2-container,
+.form-group.fg-error input,
+.form-group.fg-error select
+{
+  border: 1px solid red;
+}
+
+.input-group.fg-error label {
+  color: red;
+}
+
+.input-group.fg-error .fg-error-message {
+  color: red;
+  clear: both;
+}
+
+.input-group.fg-error .select2-container,
+.input-group.fg-error input,
+.input-group.fg-error select
+{
+  border: 1px solid red;
+}

@@ -1,0 +1,618 @@
+<?php
+
+$data = $result_data->data;
+
+    $result_prosecution = [];
+    foreach ($result_data->data as $row) {
+        $result_prosecution[] = $row->Fiscalia;
+    }
+
+    $result_ref3 = array_filter($result_prosecution, function($row){
+        return $row->Especialidad == 'PENAL';
+    });
+
+    $result_ref4 = array_filter($result_prosecution, function($row){
+        return $row->Especialidad == 'CIVIL';
+    });
+
+    $result_ref5 = array_filter($result_prosecution, function($row){
+        return $row->Especialidad == 'FAMILIA';
+    });
+?>
+<style>
+    div, table tr td, table tr th{
+        font-size: 12px;
+    }
+
+    table { 
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+
+    .tbl-style-1 th {
+        font-weight: normal;
+        background: #064185;
+        color: #ffffff;
+    }
+
+    .tbl-style-1 td {
+        color: #222222;
+    }
+
+    .tbl-style-1 th, 
+    .tbl-style-1 td {
+        padding: 5px;
+        border:1px solid #bbbbbb;
+    }
+</style>
+
+<div style="padding: 8px 5px;">
+    <?php echo date('d/m/Y H:i', strtotime($screening->date)); ?>
+</div>
+<table width="100%" border="1" class="tbl-style-1" cellspacing="1" cellpadding="1">
+    <tr>
+        <th colspan="3" align="left">
+            DATOS GENERALES
+        </th>
+    </tr>
+    <tr>
+        <td width="200">
+            N° de Documento:
+        </td>
+        <td>
+            <?php echo $result_data->documentNumber . ' - ' . $result_data->checkDigit; ?>
+        </td>
+        <td rowspan="5" width="120" style="border-bottom: none;">
+            <div>
+                <?php if ($result_data->photo): ?>
+                    <img src="data:image/jpg;base64,<?php echo $result_data->photo; ?>" 
+                        alt="" 
+                        style="width: 120px;height: 140px;border: 1px solid #999;border-radius: 5px;">
+                <?php else: ?>
+                    <img src="<?php echo base_url('public/images/no_pic.jpg'); ?>" 
+                        alt="" 
+                        style="width: 120px;height: 140px;border: 1px solid #999;border-radius: 5px;">
+                <?php endif; ?>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ape. Paterno:
+        </td>
+        <td>
+            <?php echo $result_data->lastname; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ape. Materno:
+        </td>
+        <td>
+            <?php echo $result_data->secondSurname; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Nombres:
+        </td>
+        <td>
+            <?php echo $result_data->firstname; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Fecha de Nacimiento:
+        </td>
+        <td>
+            <?php echo $result_data->dateBirth; ?>
+        </td>
+    </tr>
+</table>
+<br>
+
+<table width="100%" border="1" class="tbl-style-1" cellspacing="1" cellpadding="1">
+    <tr>
+        <th colspan="2" align="left">
+            DATOS DE DOMICILIO
+        </th>
+    </tr>
+    <tr>
+        <td width="200">
+            Nombre del Padre:
+        </td>
+        <td>
+            <?php echo $result_data->fatherName; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Nombre de la Madre:
+        </td>
+        <td>
+            <?php echo $result_data->motherName; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dirección de Domicilio:
+        </td>
+        <td>
+            <?php echo $result_data->address; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Distrito de Domicilio:
+        </td>
+        <td>
+            <?php echo $result_data->districtBirth; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dpto. Prov y Dist de Domicilio:
+        </td>
+        <td>
+            <?php echo $result_data->departmentBirth . ' ' . $result_data->provinceBirth . ' ' . $result_data->districtBirth; ?>
+        </td>
+    </tr>
+</table>
+
+<?php if (count($result_data->homonymns) > 0): ?>
+    <br>
+    <table width="100%" border="1" class="tbl-style-1" cellspacing="1" cellpadding="1">
+        <tr>
+            <th colspan="6" align="left">
+                HOMONIMOS (<?php echo count($result_data->homonymns); ?>)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                N 
+            </th>
+            <th>
+                DNI 
+            </th>
+            <th>
+                Apellido Paterno
+            </th>
+            <th>
+                Apellido Materno
+            </th>
+            <th>
+                Nombres
+            </th>
+            <th>
+                Fecha Nacimiento
+            </th>
+        </tr>
+
+        <?php foreach($result_data->homonymns as $index => $row): ?>
+            <tr>
+                <td>
+                    <?php echo ($index + 1); ?>
+                </td>
+                <td>
+                    <?php echo $row->numeroDocumento; ?>
+                </td>
+                <td>
+                    <?php echo $row->apellidoPaterno; ?>
+                </td>
+                <td>
+                    <?php echo $row->apellidoMaterno; ?>
+                </td>
+                <td>
+                    <?php echo $row->nombres; ?>
+                </td>
+                <td>
+                    <?php echo $row->fechaNacimiento; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php endif; ?>
+<br>
+
+<?php $incidences = $result_data->dataNegativeIncidence->ListNegativeIncidences; ?>
+
+<table width="100%" border="1" class="tbl-style-1" cellspacing="1" cellpadding="1">
+    <tr>
+        <th align="left">
+            INCIDENCIAS NEGATIVAS
+        </th>
+    </tr>
+    <?php if (count($incidences) == 0): ?>
+        <tr>
+            <td>
+                Sin incidencias registradas
+            </td>
+        </tr>
+    <?php endif; ?>
+</table>
+
+<?php foreach($incidences as $index => $row): ?>
+    <table width="100%" border="1"  class="tbl-style-1" cellspacing="1" cellpadding="1">
+        <tr>
+            <td width="150">
+                Tipo
+            </td>
+            <td>
+                <?php echo $row->tipo; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Fecha incidencia
+            </td>
+            <td>
+                <?php echo $row->fechahecho; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Materia
+            </td>
+            <td>
+                <?php echo $row->materia; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Subtipo
+            </td>
+            <td>
+                <?php echo $row->subtipo; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Lugar
+            </td>
+            <td>
+                <?php echo $row->cia . ' ' . $row->ddist . ' ' . $row->ubica; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Fecha denuncia
+            </td>
+            <td>
+                <?php echo $row->fechaRegistro; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Detalle
+            </td>
+            <td>
+                <?php echo $row->contenido; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Situación
+            </td>
+            <td>
+                <?php echo $row->dsituden; ?>
+            </td>
+        </tr>
+    </table>
+    <br>
+<?php endforeach; ?>
+<br>
+<table width="100%" border="1" class="tbl-style-1" cellspacing="1" cellpadding="1">
+    <tr>
+        <th colspan="3" align="left">
+            OBSERVACIONES NEGATIVAS
+        </th>
+    </tr>
+    <tr>
+        <th>
+            N
+        </th>
+        <th>
+            Referencia 
+        </th>
+        <th>
+            Resultado 
+        </th>
+    </tr>
+    <tr>
+        <td>
+            1
+        </td>
+        <td>
+            Ref. 1 
+        </td>
+        <td>
+            -
+        </td>
+    </tr>
+    <tr>
+        <td>
+            2
+        </td>
+        <td>
+            Ref. 2 
+        </td>
+        <td>
+            -
+        </td>
+    </tr>
+    <tr>
+        <td>
+            3
+        </td>
+        <td>
+            Ref. 3 
+        </td>
+        <td>
+            <?php echo count($result_ref3) > 0 ? 'Registra' : 'No registra'; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            4
+        </td>
+        <td>
+            Ref. 4 
+        </td>
+        <td>
+            <?php echo count($result_ref4) > 0 ? 'Registra' : 'No registra'; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            5
+        </td>
+        <td>
+            Ref. 5 
+        </td>
+        <td>
+            <?php echo count($result_ref5) > 0 ? 'Registra' : 'No registra'; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            6
+        </td>
+        <td>
+            Ref. 6 
+        </td>
+        <td>
+            -
+        </td>
+    </tr>
+</table>
+
+<br>
+<div style="background: #064185;color: #ffffff;padding: 5px;">
+    DETALLE OBSERVACIONES NEGATIVAS
+</div>
+
+<?php if (count($result_ref3) > 0): ?>
+    <table border="1" class="tbl-style-1" width="100%" cellspacing="1" cellpadding="1">
+        <tr>
+            <th colspan="2" align="left">
+                    REF.3
+            </th>
+        </tr>
+    </table>
+    <br>
+    <?php foreach ($result_ref3 as $row): ?>
+        <table width="100%" border="1" class="tbl-style-1" mcellspacing="1" cellpadding="1">
+            <tr>
+                <td width="130">Delito</td>
+                <td>
+                    <?php echo $row->Delito; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Dependencia</td>
+                <td>
+                    <?php echo $row->Dependencia; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Jurisdicción</td>
+                <td><?php echo $row->{'Jurisdicción'}; ?></td>
+            </tr>
+            <tr>
+                <td>Fecha</td>
+                <td><?php echo $row->Fecha; ?></td>
+            </tr>
+            <tr>
+                <td>Caso</td>
+                <td><?php echo $row->Caso; ?></td>
+            </tr>
+            <tr>
+                <td>Parte </td>
+                <td><?php echo $row->Parte; ?></td>
+            </tr>
+            <tr>
+                <td>Inicio del proceso</td>
+                <td><?php echo $row->{'Inicio del proceso'}; ?></td>
+            </tr>
+            <tr>
+                <td>Especialidad</td>
+                <td><?php echo $row->Especialidad; ?></td>
+            </tr>
+            <tr>
+                <td>Estado</td>
+                <td><?php echo $row->Estado; ?></td>
+            </tr>
+        </table>
+        <br>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (count($result_ref4) > 0): ?>
+    <table border="1" class="tbl-style-1" width="100%" cellspacing="1" cellpadding="1">
+        <tr>
+            <th colspan="2" align="left">
+                    REF.4
+            </th>
+        </tr>
+    </table>
+    <br>
+    <?php foreach ($result_ref4 as $row): ?>
+        <table width="100%" border="1" class="tbl-style-1" cellspacing="1" cellpadding="1">
+            <tr>
+                <td width="130">Delito</td>
+                <td>
+                    <?php echo $row->Delito; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Dependencia</td>
+                <td>
+                    <?php echo $row->Dependencia; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Jurisdicción</td>
+                <td><?php echo $row->{'Jurisdicción'}; ?></td>
+            </tr>
+            <tr>
+                <td>Fecha</td>
+                <td><?php echo $row->Fecha; ?></td>
+            </tr>
+            <tr>
+                <td>Caso</td>
+                <td><?php echo $row->Caso; ?></td>
+            </tr>
+            <tr>
+                <td>Parte </td>
+                <td><?php echo $row->Parte; ?></td>
+            </tr>
+            <tr>
+                <td>Inicio del proceso</td>
+                <td><?php echo $row->{'Inicio del proceso'}; ?></td>
+            </tr>
+            <tr>
+                <td>Especialidad</td>
+                <td><?php echo $row->Especialidad; ?></td>
+            </tr>
+            <tr>
+                <td>Estado</td>
+                <td><?php echo $row->Estado; ?></td>
+            </tr>
+        </table>
+        <br>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (count($result_ref5) > 0): ?>
+    <table border="1" class="tbl-style-1" width="100%" cellspacing="1" cellpadding="1">
+        <tr>
+            <th colspan="2" align="left">
+                    REF.5
+            </th>
+        </tr>
+    </table>
+    <br>
+    <?php foreach ($result_ref5 as $row): ?>
+        <table width="100%" border="1" cellspacing="1" cellpadding="1">
+            <tr>
+                <td width="130">Delito</td>
+                <td>
+                    <?php echo $row->Delito; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Dependencia</td>
+                <td>
+                    <?php echo $row->Dependencia; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Jurisdicción</td>
+                <td><?php echo $row->{'Jurisdicción'}; ?></td>
+            </tr>
+            <tr>
+                <td>Fecha</td>
+                <td><?php echo $row->Fecha; ?></td>
+            </tr>
+            <tr>
+                <td>Caso</td>
+                <td><?php echo $row->Caso; ?></td>
+            </tr>
+            <tr>
+                <td>Parte </td>
+                <td><?php echo $row->Parte; ?></td>
+            </tr>
+            <tr>
+                <td>Inicio del proceso</td>
+                <td><?php echo $row->{'Inicio del proceso'}; ?></td>
+            </tr>
+            <tr>
+                <td>Especialidad</td>
+                <td><?php echo $row->Especialidad; ?></td>
+            </tr>
+            <tr>
+                <td>Estado</td>
+                <td><?php echo $row->Estado; ?></td>
+            </tr>
+        </table>
+        <br>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<table width="100%" border="1" class="tbl-style-1" cellspacing="1" cellpadding="1">
+    <tr>
+        <th colspan="2" align="left">
+            INDICADOR PRELIMINAR 
+        </th>
+    </tr>
+    <tr>
+        <td colspan="2">
+            No registra 
+        </td>
+    </tr>
+</table>
+<br>
+<table width="100%" border="1" class="tbl-style-1" cellspacing="1" cellpadding="1">
+    <tr>
+        <th colspan="2" align="left">
+            INDICADOR PSICOTÉCNICO 
+        </th>
+    </tr>
+    <tr>
+        <td colspan="2">
+            No registra 
+        </td>
+    </tr>
+</table>
+<br>
+<table width="100%" border="1" class="tbl-style-1" cellspacing="1" cellpadding="1">
+    <tr>
+        <th colspan="2" align="left">
+            OTRAS REFERENCIAS DE CONDUCTA SOCIAL PÚBLICA 
+        </th>
+    </tr>
+    <tr>
+        <td>
+            REGISTRO DE HISTORIAL POLÍTICO (INFOGOB)
+        </td>
+        <td>
+            No registra 
+        </td>
+    </tr>
+    <tr>
+        <td>
+            REGISTRO NACIONAL DE SANCIONES CONTRA SERVIDORES CIVILES (TRANSPARENCIA)
+        </td>
+        <td>
+            No registra 
+        </td>
+    </tr>
+    <tr>
+        <td>
+            DEUDORES ALIMENTARIOS EN MOROSIDAD (REDAM)
+        </td>
+        <td>
+            No registra 
+        </td>
+    </tr>
+</table>
