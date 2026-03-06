@@ -1,0 +1,128 @@
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Migration_Insert_data_module_job_layout_disability extends CI_Migration
+{
+    public function up()
+    {
+        $section = [
+			'FACTORES DE TRABAJO' => ['DEHAMBULACIÓN', 'APREHENSIÓN', 'COMUNICACIÓN'],
+			'ESFUERZOS/DETERIORO POSIBLE DE LA SALUD' => ['MENTALES', 'FÍSICOS'],
+			'RESPONSABILIDADES' => ['ROL EN LAS ACTIVIDADES'],
+			'ENTORNO' => ['ENTORNO FÍSICO (INSTALACIONES / RUIDO / LUMINOSIDAD)']
+		];
+
+		$subtemas = [
+			'MIEMBRO SUPERIOR' => $section,
+			'MIEMBRO INFERIOR' => $section
+		]; 
+
+		$subtemas2 = [
+			'VISUAL' => $section,
+			'AUDITIVA' => $section,
+			'DE LENGUAJE' => $section,
+		];
+
+		$temas = [
+			'DISCAPACIDADES FÍSICAS' => $subtemas,
+			'DISCAPACIDADES SENSORIALES' => $subtemas2
+		];
+
+		foreach ($temas as $tema => $_subtemas) {
+
+			$this->db->insert('tbl_job_layout_disability_themes', [
+				'name' => $tema,
+				'active' => 1
+			]);
+
+			$tema_id = $this->db->insert_id();
+
+			foreach ($_subtemas as $_subtema => $_sections) {
+
+				$this->db->insert('tbl_job_layout_disability_subthemes', [
+					'name' => $_subtema,
+					'active' => 1,
+					'theme_id' => $tema_id
+				]);	
+
+				$subtema_id = $this->db->insert_id();
+
+				foreach ($_sections as $_section => $_items) {
+
+					$this->db->insert('tbl_job_layout_disability_sections', [
+						'name' => $_section,
+						'active' => 1,
+						'subtheme_id' => $subtema_id
+					]);	
+	
+					$section_id = $this->db->insert_id();
+
+					foreach ($_items as $_item) {
+
+						$this->db->insert('tbl_job_layout_disability_items', [
+							'name' => $_item,
+							'active' => 1,
+							'section_id' => $section_id
+						]);	
+					}
+				}
+			}
+		}
+
+        $items = [
+			'DEHAMBULACIÓN' => [
+				1 => 'PRESENCIA DE ACCESO A RAMPAS Y ASCENSORES, ÁREAS COMUNES Y SERVICIOS HIGIÉNICOS ADAPTADOS PARA PERSONAS CON DISCAPACIDAD. SE CUENTA CON ASISTENCIA DE PERSONAL DE BIENESTAR Y DE ATENCIÓN MÉDICA IN SITU.',
+				2 => 'PRESENCIA "PARCIAL" DE ACCESO A RAMPAS/ASCENSORES, DIFICIL ACCESO A ÁREAS COMUNES/SS.HH. ADAPTADOS PARA PERSONAS CON DISCAPACIDAD. SOPORTE ESPORÁDICO DE PERSONAL DE BIENESTAR SOCIAL Y/O ATENCIÓN MÉDICA IN SITU.',
+				3 => 'POCO O NULO ACCESO A RAMPAS, ASCENSORES, ÁREAS COMUNES Y SERVICIOS HIGIÉNICOS ADAPTADOS PARA PERSONAS CON DISCAPACIDAD. NO SE CUENTA CON ASISTENCIA DE PERSONAL DE BIENESTAR Y DE ATENCIÓN MÉDICA IN SITU.'
+			],
+			'APREHENSIÓN' => [
+				1 => 'HERRAMIENTAS DE TRABAJO DE FÁCIL TRANSPORTE, BAJA COMPLEJIDAD EN SU USO, ACCESIBLES Y ERGONÓMICOS PARA LOS PUESTOS DE TRABAJO.',
+				2 => 'HERRAMIENTAS DE TRABAJO DE FÁCIL TRANSPORTE, "MEDIANA COMPLEJIDAD EN SU USO", ACCESIBLES Y ERGONÓMICOS PARA LOS PUESTOS DE TRABAJO.',
+				3 => 'HERRAMIENTAS DE TRABAJO DE TRANSPORTE MEDIANAMENTE COMPLEJO, DIFICULTAD ALTA EN SU USO, NO ERGONÓMICOS PARA LOS PUESTOS DE TRABAJO.'
+			],
+			'COMUNICACIÓN' => [
+				1 => 'SOPORTE ADECUADO/ÓPTIMO DE HERRAMIENTAS AUDIOVISUALES, SEÑALES ACÚSTICAS, LUMINOSAS Y TÁCTILES.  PRESENCIA DE SUPERVISIÓN/GUÍA CAPACITADO PARA EL PERSONAL CON DISCAPACIDAD.',
+				2 => 'SOPORTE "PARCIAL" DE HERRAMIENTAS AUDIOVISUALES, SEÑALES ACÚSTICAS, LUMINOSAS Y TÁCTILES.  PRESENCIA DE SUPERVISIÓN/GUÍA CAPACITADO PARA EL PERSONAL CON DISCAPACIDAD.',
+				3 => 'IMPLEMENTACIÓN BAJA O NULA DE SOPORTES AUDIOVISUALES, SEÑALES ACÚSTICAS, LUMINOSAS Y TÁCTILES.  NO CUENTA CON PERSONAL GUÍA CAPACITADO EN EL SITIO.'
+			],
+			'MENTALES' => [
+				1 => 'BAJA CARGA MENTAL QUE REQUIERE POCA CONCENTRACIÓN Y ESFUERZO COGNITIVO/IMPACTO DE ANSIEDAD Y ESTRÉS',
+				2 => 'MEDIANA CARGA MENTAL QUE REQUIERE CONCENTRACIÓN Y ESFUERZO COGNITIVO PROMEDIO/ IMPACTO DE ANSIEDAD Y STRESS',
+				3 => 'ALTA CARGA MENTAL QUE REQUIERE/DEMANDA CONCENTRACIÓN Y ESFUERZO COGNITIVO'
+			],
+			'FÍSICOS' => [
+				1 => 'BAJA ACTIVIDAD FÍSICA QUE REQUIERE POCO MOVIMIENTO Y ESFUERZO/INCIDENCIA DE LESIONES OSTEOMUSCULARES',
+				2 => 'MEDIANA ACTIVIDAD FÍSICA QUE REQUIERE MOVIMIENTO Y ESFUERZO/INCIDENCIA DE LESIONES OSTEOMUSCULARES MODERADO',
+				3 => 'ALTA ACTIVIDAD FÍSICA QUE REQUIERE/DEMANDA MOVIMIENTO Y ESFUERZO DEL PERSONAL'
+			],
+			'ROL EN LAS ACTIVIDADES' => [
+				1 => 'BAJA REPERCUSIÓN EN LOS RESULTADOS. BAJA POSIBILIDAD DE COMETER ERRORES QUE, AL NO SER DETECTADOS, PUEDEN AFECTAR A OTRAS ÁREAS O QUE RESULTE UNA PERDIDA DE TIEMPO, MATERIALES O DEMORAS EN EL SERVICIO, HASTA UN GRADO LIMITADO. PUEDE SER DETECTADO ANTES DE QUE PRODUZCAN UN PERJUICIO IMPORTANTE',
+				2 => 'MODERADA REPERCUSIÓN EN LOS RESULTADOS. TIENE LA POSIBILIDAD DE COMETER ERRORES COMO LOS DESCRITOS EN EL GRADO ANTERIOR, PERO CON MAYOR TRASCENDENCIA. SUPERVISIÓN FRECUENTE',
+				3 => 'ALTA REPERCUSIÓN EN LOS RESULTADOS QUE TIENEN EFECTO EN MAS DE UN ÁREA FUNCIONAL O EN EL GLOBAL DE LA EMPRESA CUYA REPERCUSIÓN ECONÓMICA O LEGAL ES DE DIFÍCIL O COMPLEJA REPARACIÓN.'
+			],
+			'ENTORNO FÍSICO (INSTALACIONES / RUIDO / LUMINOSIDAD)' => [
+				1 => 'POCA EXPOSICIÓN AL PÚBLICO (OFICINA O CAMPO) / RUIDO BAJO O ACEPTABLE / LUMINOSIDAD ADECUADA / AMBIENTE VENTILADO',
+				2 => 'EXPOSICIÓN AL PÚBLICO (OFICINA O CAMPO) / RUIDO ACEPTABLE / ESCASA LUMINOSIDAD / AMBIENTES POCO VENTILADOS',
+				3 => 'ZONA DE ALTA TRANSITABILIDAD/RUIDO MODERADO / ESCASA LUMINOSIDAD/ AMBIENTES POCO VENTILADOS'
+			]
+		];
+
+		foreach ($items as $_item => $info) {
+
+			$this->db->where('name', $_item);
+			$this->db->update('tbl_job_layout_disability_items', [
+				'grade_info' => json_encode($info) 
+			]);
+		}
+    }
+
+    public function down()
+    {
+        $this->db->truncate('tbl_job_layout_disability');
+        $this->db->truncate('tbl_job_layout_disability_items');
+        $this->db->truncate('tbl_job_layout_disability_sections');
+        $this->db->truncate('tbl_job_layout_disability_subthemes');
+        $this->db->truncate('tbl_job_layout_disability_themes');
+    }
+}
