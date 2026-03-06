@@ -1,28 +1,47 @@
 # Portal de Empleo (Perú)
 
-Proyecto basado en CodeIgniter para búsqueda de empleo.
+Proyecto basado en CodeIgniter 3 para búsqueda de empleo - configurado para Replit.
 
-## Estructura Estándar para Servidores (Local/Producción)
+## Stack Tecnológico
 
-Esta estructura está preparada para ser desplegada en cualquier servidor LAMP (Linux, Apache, MySQL, PHP) o WAMP (Windows) de forma rápida.
+- **Backend**: PHP 8.2 + CodeIgniter 3 (carpeta personalizada: `ca_app/`, `ca_sys/`)
+- **Base de Datos**: PostgreSQL (Replit nativo) via driver `postgre` de CodeIgniter
+- **Frontend**: HTML5, CSS3, AdminLTE
+- **Compositor de paquetes**: Composer 2.x
 
-### 1. Requisitos
-- PHP 7.4 o superior (Compatible con PHP 8.x)
-- MySQL / MariaDB
-- Apache con `mod_rewrite` habilitado
+## Estructura del Proyecto
 
-### 2. Instalación Local / Servidor
-1.  **Archivos**: Copia todo el contenido de la raíz a tu directorio público (`www`, `public_html` o `htdocs`).
-2.  **Base de Datos**: 
-    - Crea una base de datos llamada `jobportal_db` (o el nombre que prefieras).
-    - Importa el archivo `jobportal_full.sql` incluido en la raíz.
-    - Configura el acceso en `ca_app/config/database.php`.
-3.  **Configuración de URL**:
-    - El archivo `ca_app/config/constants.php` detecta automáticamente la URL base. No es necesario editarlo manualmente para cambios de dominio simples.
-4.  **Apache (.htaccess)**:
-    - Se incluye un archivo `.htaccess` estándar para eliminar `index.php` de las URLs.
+- `ca_app/` - Directorio de la aplicación (controladores, modelos, vistas, config)
+- `ca_sys/` - Framework CodeIgniter 3 (renombrado de `system/`)
+- `public/` - Assets estáticos y uploads
+- `vendor/` - Dependencias de Composer
+- `index.php` - Punto de entrada principal
+- `router.php` - Router para PHP built-in server
 
-### 3. Notas de Desarrollo
-- **Framework**: CodeIgniter 3.
-- **Frontend**: HTML5, CSS3 (AdminLTE para el panel).
-- **Entorno**: Configurado en `development` por defecto en `index.php`.
+## Configuración de Replit
+
+- **PHP**: 8.2 (módulo `php-8.2`)
+- **Puerto**: 8000 (mapeado a puerto externo 80)
+- **Base de datos**: PostgreSQL (variables de entorno: `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`)
+- **Workflow**: `php -S 0.0.0.0:8000 router.php`
+
+## Archivos de Configuración
+
+- `ca_app/config/database.php` - Configuración de BD (usa variables de entorno PostgreSQL)
+- `ca_app/config/constants.php` - Constantes globales (URL base detectada automáticamente desde `REPLIT_DEV_DOMAIN`)
+- `ca_app/config/config.php` - Configuración de CodeIgniter
+
+## Dependencias Clave (Composer)
+
+- `mpdf/mpdf` - Generación de PDFs
+- `phpoffice/phpspreadsheet` - Exportación Excel
+- `aws/aws-sdk-php` - Integración AWS S3
+- `giggsey/libphonenumber-for-php` - Validación teléfonos
+
+## Notas de Migración
+
+- Proyecto original usaba MySQL/MariaDB; migrado a PostgreSQL para Replit
+- El driver `postgre` de CodeIgniter quita comillas en identificadores automáticamente
+- Algunas tablas fueron creadas manualmente en PostgreSQL con columnas en el formato correcto
+- Stored procedures MySQL reemplazados por queries directas en el modelo `Posted_job.php`
+- El archivo `jobportal_full.sql` es un redirect de Google Drive (no SQL real)
