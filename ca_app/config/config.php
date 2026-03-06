@@ -1,7 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once(APPPATH.'config/constants.php');
+// Ensure constants are loaded before anything else
+if (file_exists(APPPATH.'config/constants.php'))
+{
+	require_once(APPPATH.'config/constants.php');
+}
+
+// Fallback for SITE_URL if constants.php failed or was not present
+if (!defined('SITE_URL')) {
+    define('SITE_URL', 'http://localhost:5000/');
+}
 
 $config['base_url']     = SITE_URL;
 $config['index_page'] = '';
