@@ -1,0 +1,23 @@
+.vscode/*
+# Add any directories, files, or patterns you don't want to be tracked by version control
+ca_app/config/database.php
+
+ca_app/config/constants.php
+
+ca_app/logs/*.php
+
+public/uploads/*
+
+public/images/captcha/*
+
+deploy.py
+
+vendor/*
+
+composerfiles70/*
+
+composerfiles81/*
+
+.DS_Store
+
+.env
