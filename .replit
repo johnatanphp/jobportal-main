@@ -22,10 +22,14 @@ args = "Start Application"
 name = "Start Application"
 author = "agent"
 
+[workflows.workflow.metadata]
+outputType = "webview"
+
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "php -S 0.0.0.0:8000 router.php"
+args = "php -d memory_limit=512M -S 0.0.0.0:5000 router.php"
+waitForPort = 5000
 
 [[ports]]
-localPort = 8000
+localPort = 5000
 externalPort = 80
