@@ -1,7 +1,7 @@
-modules = ["postgresql-16"]
+modules = ["postgresql-16", "php-8.2"]
 [nix]
 channel = "stable-25_05"
-packages = ["unzip"]
+packages = ["unzip", "mariadb", "php82Extensions.pdo_mysql", "php82Extensions.mysqli", "php82Extensions.mbstring", "php82Extensions.gd", "php82Extensions.zip", "php82Extensions.curl"]
 
 [agent]
 expertMode = true
@@ -25,3 +25,7 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "php -S 0.0.0.0:8000 router.php"
+
+[[ports]]
+localPort = 8000
+externalPort = 80
