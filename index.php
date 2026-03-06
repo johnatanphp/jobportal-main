@@ -59,6 +59,7 @@
         date_default_timezone_set("America/Lima");
         // Suppress PHP 8.2 dynamic property deprecation warnings from legacy CodeIgniter
         error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+        ini_set('memory_limit', '256M');
         
         define('ENVIRONMENT',  'development');
         //define('ENVIRONMENT', 'production');
