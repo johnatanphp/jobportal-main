@@ -22,6 +22,10 @@ args = "Run Job Portal"
 task = "workflow.run"
 args = "Start Server"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start Application"
+
 [[workflows.workflow]]
 name = "Run Job Portal"
 author = "agent"
@@ -37,3 +41,11 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "php -S 0.0.0.0:8000 router.php"
+
+[[workflows.workflow]]
+name = "Start Application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "php -S 0.0.0.0:5000 router.php"
