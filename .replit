@@ -16,31 +16,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Run Job Portal"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Start Server"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
 args = "Start Application"
-
-[[workflows.workflow]]
-name = "Run Job Portal"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "php -S 0.0.0.0:8000 router.php"
-
-[[workflows.workflow]]
-name = "Start Server"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "php -S 0.0.0.0:8000 router.php"
 
 [[workflows.workflow]]
 name = "Start Application"
@@ -48,7 +24,11 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "php -S 0.0.0.0:5000 router.php"
+args = "mkdir -p /tmp/ci_sessions && php -S 0.0.0.0:5000 router.php"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
 
 [[ports]]
 localPort = 5000

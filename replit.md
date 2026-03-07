@@ -1,6 +1,6 @@
-# Portal de Empleo v2.0 - Production Ready
+# Portal de Empleo v2.0
 
-**Status**: Ready for Deployment  
+**Status**: Running on Replit  
 **Stack**: PHP 8.2 + CodeIgniter 3 + PostgreSQL  
 **Database**: Replit PostgreSQL  
 **Deployment Target**: Autoscale VM
