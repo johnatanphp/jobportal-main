@@ -380,38 +380,35 @@ class Employer extends CI_Model
     }
 //====== Specifically front end methods =======	
 	public function get_all_active_employers($per_page, $page) {
-        $Q = $this->db->query("CALL get_all_active_employers($page, $per_page)");
+        $Q = $this->db->query("SELECT * FROM get_all_active_employers($page, $per_page)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }	
 	
 	public function get_all_active_top_employers($per_page, $page) {
-        $Q = $this->db->query("CALL get_all_active_top_employers($page, $per_page)");
+        $Q = $this->db->query("SELECT * FROM get_all_active_top_employers($page, $per_page)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
     
 	/* PA sin usar*/
 	public function get_company_details_by_slug($slug) {
-        $Q = $this->db->query('CALL get_company_by_slug("'.$slug.'")');
+        $Q = $this->db->query("SELECT * FROM get_company_by_slug('$slug')");
         if ($Q->num_rows() > 0) {
             $return = $Q->row();
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }

@@ -16,18 +16,17 @@ class Posted_job extends CI_Model
 
     public function get_posted_job_by_id($id)
     {
-       $Q = $this->db->query("CALL get_posted_job_by_id($id)");
+       $Q = $this->db->query("SELECT * FROM get_posted_job_by_id($id)");
         if ($Q->num_rows() > 0) {
             $return = $Q->row();
         } else {
             $return = 0;
         }
-        $Q->next_result();
         $Q->free_result();
         return $return;
     }
 
-	public function add_posted_job($data_post, $questions_data, $has_questions)
+        public function add_posted_job($data_post, $questions_data, $has_questions)
     {
         $return = $this->db->insert('tbl_post_jobs', $data_post);
 
@@ -76,8 +75,8 @@ class Posted_job extends CI_Model
         }
 
         return $job_id;       
-	}	
-	
+        }       
+        
     public function update_posted_job(
         $job_id, 
         $post_jobs_data, 
@@ -131,86 +130,82 @@ class Posted_job extends CI_Model
 
         return $return;
     }
-	
-	public function delete_posted_job($id)
+        
+        public function delete_posted_job($id)
     {
-		$this->db->where('ID', $id);
-		$this->db->delete('tbl_post_jobs');
-	}
-	
-	public function delete_posted_job_by_employer_id($emp_id)
+                $this->db->where('ID', $id);
+                $this->db->delete('tbl_post_jobs');
+        }
+        
+        public function delete_posted_job_by_employer_id($emp_id)
     {
-		$this->db->where('employer_ID', $emp_id);
-		$this->db->delete('tbl_post_jobs');
-	}
-	
-	public function delete_posted_job_by_id_emp_id($id,$emp_id)
+                $this->db->where('employer_ID', $emp_id);
+                $this->db->delete('tbl_post_jobs');
+        }
+        
+        public function delete_posted_job_by_id_emp_id($id,$emp_id)
     {
-		$this->db->where('ID', $id);
-		$this->db->where('employer_ID', $emp_id);
-		$return = $this->db->delete('tbl_post_jobs');
-		return $return;
-	}
-	
-	public function get_all_posted_jobs($per_page, $page)
+                $this->db->where('ID', $id);
+                $this->db->where('employer_ID', $emp_id);
+                $return = $this->db->delete('tbl_post_jobs');
+                return $return;
+        }
+        
+        public function get_all_posted_jobs($per_page, $page)
     {
-		$Q = $this->db->query("CALL get_all_posted_jobs(".$page.",".$per_page.")");	
+                $Q = $this->db->query("SELECT * FROM get_all_posted_jobs(".$page.",".$per_page.")");    
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-		
-	public function get_posted_job_by_job_id($job_id)
+                
+        public function get_posted_job_by_job_id($job_id)
     {
         $this->db->select('tbl_post_jobs.*, tbl_employers.email, tbl_employers.first_name');
         $this->db->from('tbl_post_jobs');
-		$this->db->join('tbl_employers', 'tbl_post_jobs.employer_ID = tbl_employers.user_ID', 'inner');
+                $this->db->join('tbl_employers', 'tbl_post_jobs.employer_ID = tbl_employers.user_ID', 'inner');
         $this->db->where('tbl_post_jobs.ID', $job_id);
-		$Q = $this->db->get();
+                $Q = $this->db->get();
         if ($Q->num_rows() > 0) {
             $return = $Q->row();
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function get_active_posted_job_by_id($id)
+        
+        public function get_active_posted_job_by_id($id)
     {
-       $Q = $this->db->query("CALL get_active_posted_job_by_id($id)");
+       $Q = $this->db->query("SELECT * FROM get_active_posted_job_by_id($id)");
         if ($Q->num_rows() > 0) {
             $return = $Q->row();
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function get_posted_job_by_id_employer_id($id,$employer_id)
+        
+        public function get_posted_job_by_id_employer_id($id,$employer_id)
     {
-       $Q = $this->db->query("CALL get_posted_job_by_id_employer_id($id,$employer_id)");
+       $Q = $this->db->query("SELECT * FROM get_posted_job_by_id_employer_id($id,$employer_id)");
         if ($Q->num_rows() > 0) {
             $return = $Q->row();
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function get_posted_job_by_employer_ID($employer_id, $per_page, $page)
+        
+        public function get_posted_job_by_employer_ID($employer_id, $per_page, $page)
     {
-       $Q = $this->db->query("CALL get_posted_job_by_employer_id($employer_id, $page, $per_page)");
+       $Q = $this->db->query("SELECT * FROM get_posted_job_by_employer_id($employer_id, $page, $per_page)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
@@ -219,86 +214,83 @@ class Posted_job extends CI_Model
         $Q->free_result();
         return $return;
     }
-	
-	public function get_posted_job_by_company_ID($company_id, $per_page, $page)
+        
+        public function get_posted_job_by_company_ID($company_id, $per_page, $page)
     {
-       $Q = $this->db->query("CALL get_posted_job_by_company_ID($company_id, $page, $per_page)");
+       $Q = $this->db->query("SELECT * FROM get_posted_job_by_company_ID($company_id, $page, $per_page)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function get_all_posted_jobs_by_company_id_frontend($company_id, $per_page, $page)
+        
+        public function get_all_posted_jobs_by_company_id_frontend($company_id, $per_page, $page)
     {
-       $Q = $this->db->query("CALL get_all_posted_jobs_by_company_id_frontend($company_id, $page, $per_page)");
+       $Q = $this->db->query("SELECT * FROM get_all_posted_jobs_by_company_id_frontend($company_id, $page, $per_page)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
+        
     public function search_all_posted_jobs($per_page, $page, $search_parameters)
     {
-		$condition='';
-		foreach($search_parameters as $key=>$val){
-			$condition .= "$key LIKE '%$val%' AND ";
-		}
-		$condition = rtrim($condition,'AND ');
-        $Q = $this->db->query('CALL search_posted_jobs("'.$condition.'", '.$page.', '.$per_page.')');
+                $condition='';
+                foreach($search_parameters as $key=>$val){
+                        $condition .= "$key LIKE '%$val%' AND ";
+                }
+                $condition = rtrim($condition,'AND ');
+        $condition_escaped = str_replace("'", "''", $condition);
+        $Q = $this->db->query("SELECT * FROM search_posted_jobs('$condition_escaped', $page, $per_page)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
-		//echo $this->db->last_query(); exit;
+                //echo $this->db->last_query(); exit;
         return $return;
     }
-	
-	public function get_featured_posted_job($per_page, $page)
+        
+        public function get_featured_posted_job($per_page, $page)
     {
-       $Q = $this->db->query("CALL get_featured_job($page, $per_page)");
+       $Q = $this->db->query("SELECT * FROM get_featured_job($page, $per_page)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	//Record Count methods
-	public function record_count($table_name)
+        
+        //Record Count methods
+        public function record_count($table_name)
     {
-		return $this->db->count_all($table_name);
+                return $this->db->count_all($table_name);
     }
-	
-	public function count_records($table_name, $db_field_name, $value)
+        
+        public function count_records($table_name, $db_field_name, $value)
     {
-		$this->db->where($db_field_name, $value);
-		$this->db->from($table_name);
-		return $this->db->count_all_results();
+                $this->db->where($db_field_name, $value);
+                $this->db->from($table_name);
+                return $this->db->count_all_results();
     }
-	
-	public function count_active_records($table_name, $db_field_name='', $value='')
+        
+        public function count_active_records($table_name, $db_field_name='', $value='')
     {
-		if($db_field_name!='' && $value!='')
-			$this->db->where($db_field_name, $value);
+                if($db_field_name!='' && $value!='')
+                        $this->db->where($db_field_name, $value);
         $this->db->where('last_date>', date('Y-m-d'));
-		$this->db->where('sts', 'active');
-		$this->db->from($table_name);
-		return $this->db->count_all_results();
+                $this->db->where('sts', 'active');
+                $this->db->from($table_name);
+                return $this->db->count_all_results();
     }
 
     public function count_active_posted_jobs()
@@ -312,70 +304,68 @@ class Posted_job extends CI_Model
 
         return $this->db->count_all_results();
     }
-	
-	public function count_opened_job_records()
+        
+        public function count_opened_job_records()
     {
-		$Q = $this->db->query("CALL count_active_opened_jobs()");	
-		 if ($Q->num_rows() > 0) {
+                $Q = $this->db->query("SELECT * FROM count_active_opened_jobs()");      
+                 if ($Q->num_rows() > 0) {
             $return = $Q->row('total');
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
-		
+                
     }
-	
-	public function search_record_count($search_parameters)
+        
+        public function search_record_count($search_parameters)
     {
-		$condition='';
-		foreach($search_parameters as $key=>$val){
-			$condition .= "$key LIKE '%$val%' AND ";
-		}
-		$condition = rtrim($condition,'AND ');
-		$Q = $this->db->query('CALL count_search_posted_jobs("'.$condition.'")');
-		if ($Q->num_rows() > 0) {
+                $condition='';
+                foreach($search_parameters as $key=>$val){
+                        $condition .= "$key LIKE '%$val%' AND ";
+                }
+                $condition = rtrim($condition,'AND ');
+                $condition_escaped = str_replace("'", "''", $condition);
+                $Q = $this->db->query("SELECT * FROM count_search_posted_jobs('$condition_escaped')");
+                if ($Q->num_rows() > 0) {
             $return = $Q->row('total');
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function count_all_posted_jobs_by_company_id_frontend($company_id)
+        
+        public function count_all_posted_jobs_by_company_id_frontend($company_id)
     {
-       $Q = $this->db->query("CALL count_all_posted_jobs_by_company_id_frontend($company_id)");
+       $Q = $this->db->query("SELECT * FROM count_all_posted_jobs_by_company_id_frontend($company_id)");
         if ($Q->num_rows() > 0) {
             $return = $Q->row('total');
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	//Specifically front end methods
-	public function get_all_posted_jobs_by_status($status, $per_page, $page)
+        
+        //Specifically front end methods
+        public function get_all_posted_jobs_by_status($status, $per_page, $page)
     {
-		$Q = $this->db->query('CALL get_all_posted_jobs_by_status("'.$status.'",'.$page.','.$per_page.')');	
+                $status_escaped = str_replace("'", "''", $status);
+                $Q = $this->db->query("SELECT * FROM get_all_posted_jobs_by_status('$status_escaped', $page, $per_page)");    
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function get_all_opened_jobs($per_page, $page)
+        
+        public function get_all_opened_jobs($per_page, $page)
     {    
         $today = date('Y-m-d');
-        $Q = $this->db->query('CALL get_all_opened_jobs(' . $page . ',' . $per_page . ',"' . $today . '")'); 
+        $Q = $this->db->query("SELECT * FROM get_all_opened_jobs($page, $per_page, '$today')");
 
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
@@ -383,7 +373,6 @@ class Posted_job extends CI_Model
             $return = [];
         }
         
-        $Q->next_result();
         $Q->free_result();
        
         return $return;
@@ -436,22 +425,21 @@ class Posted_job extends CI_Model
 
         return $this->db->count_all_results();
     }
-		
+                
     /* PA no usado */
-	public function get_active_posted_job_by_company_id($company_id, $per_page, $page)
+        public function get_active_posted_job_by_company_id($company_id, $per_page, $page)
     {
-       $Q = $this->db->query("CALL get_active_posted_job_by_company_id($company_id, $page, $per_page)");
+       $Q = $this->db->query("SELECT * FROM get_active_posted_job_by_company_id($company_id, $page, $per_page)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function search_posted_jobs_by_company_id(
+        
+        public function search_posted_jobs_by_company_id(
         $company_id, 
         $filters, 
         $per_page, 
@@ -674,12 +662,12 @@ class Posted_job extends CI_Model
         }
 
         return $this->db->count_all_results();
-    }	
-	
-	public function get_active_featured_posted_job($per_page, $page)
+    }   
+        
+        public function get_active_featured_posted_job($per_page, $page)
     {   
        $today = date('Y-m-d');
-       $Q = $this->db->query('CALL get_active_featured_job(' . $page . ',' . $per_page . ',"' . $today . '")');
+       $Q = $this->db->query("SELECT * FROM get_active_featured_job($page, $per_page, '$today')");
         
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
@@ -687,27 +675,25 @@ class Posted_job extends CI_Model
             $return = [];
         }
 
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function count_active_opened_jobs_by_company_id($company_id)
+        
+        public function count_active_opened_jobs_by_company_id($company_id)
     {    
         $today = date('Y-m-d');
 
-		$Q = $this->db->query("CALL count_active_opened_jobs_by_company_id(" . $company_id . ", '" . $today . "')");	
-		 if ($Q->num_rows() > 0) {
+                $Q = $this->db->query("SELECT * FROM count_active_opened_jobs_by_company_id(" . $company_id . ", '" . $today . "')");   
+                 if ($Q->num_rows() > 0) {
             $return = $Q->row('total');
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
-		
+                
     }
-	
+        
     //Search
     public function get_searched_jobs($filters, $per_page, $page)
     {
@@ -775,14 +761,13 @@ class Posted_job extends CI_Model
 
         return  $this->db->get()->result();
      
-        // $Q = $this->db->query('CALL ft_search_job("' . $search . '", "' . $industry . '","' . $city . '","' . $today . '",' . $page . ', ' . $per_page . ')');
+        // $Q = $this->db->query('SELECT * FROM ft_search_job("' . $search . '", "' . $industry . '","' . $city . '","' . $today . '",' . $page . ', ' . $per_page . ')');
         
         // if ($Q->num_rows() > 0) {
         //     $return = $Q->result();
         // } else {
         //     $return = [];
         // }
-        // $Q->next_result();
         // $Q->free_result();
         
         // return $return;
@@ -835,33 +820,32 @@ class Posted_job extends CI_Model
         
         return  $this->db->count_all_results();
             
-		// $Q = $this->db->query('CALL count_ft_search_job("' . $search . '","' . $industry . '","' . $city . '","' . $today . '")');	
-		//  if ($Q->num_rows() > 0) {
+                // $Q = $this->db->query('SELECT * FROM count_ft_search_job("' . $search . '","' . $industry . '","' . $city . '","' . $today . '")');  
+                //  if ($Q->num_rows() > 0) {
         //     $return = $Q->row('total');
         // } else {
         //     $return = 0;
         // }
-		// $Q->next_result();
         // $Q->free_result();
         // return $return;
-		
+                
     }
-	
-	//Search Matching
-	public function get_matching_searched_jobs($param, $per_page, $page)
+        
+        //Search Matching
+        public function get_matching_searched_jobs($param, $per_page, $page)
     {
        $Q = $this->db->query("
-	SELECT pj.ID, pj.job_title, pj.job_slug, pj.employer_ID, pj.company_ID, pj.job_description, pj.city, pj.dated, pj.last_date, pj.is_featured, pj.sts, pc.company_name, pc.company_logo, pc.company_slug
+        SELECT pj.ID, pj.job_title, pj.job_slug, pj.employer_ID, pj.company_ID, pj.job_description, pj.city, pj.dated, pj.last_date, pj.is_featured, pj.sts, pc.company_name, pc.company_logo, pc.company_slug
 
-	FROM `tbl_post_jobs` pj 
+        FROM tbl_post_jobs pj 
 
-	INNER JOIN tbl_companies AS pc ON pj.company_ID=pc.ID
+        INNER JOIN tbl_companies AS pc ON pj.company_ID=pc.ID
 
-	WHERE pj.sts = 'active' AND pc.sts = 'active' 
+        WHERE pj.sts = 'active' AND pc.sts = 'active' 
 
-	AND (
-			".$param."
-		)
+        AND (
+                        ".$param."
+                )
     ORDER BY pj.ID DESC LIMIT 35;
 ");
         if ($Q->num_rows() > 0) {
@@ -869,40 +853,37 @@ class Posted_job extends CI_Model
         } else {
             $return = [];
         }
-		@$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function get_searched_group_by_title($param) {
-       $Q = $this->db->query('CALL ft_search_jobs_group_by_title("'.$param.'")');
+        
+        public function get_searched_group_by_title($param) {
+       $Q = $this->db->query('SELECT * FROM ft_search_jobs_group_by_title("'.$param.'")');
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
-	
-	public function get_searched_group_by_city($search, $industry) {
+        
+        public function get_searched_group_by_city($search, $industry) {
    
         $today = date('Y-m-d');
-        $Q = $this->db->query('CALL ft_search_jobs_group_by_city("' . $search . '", "' . $industry . '", "' . $today .'")');
+        $Q = $this->db->query('SELECT * FROM ft_search_jobs_group_by_city("' . $search . '", "' . $industry . '", "' . $today .'")');
         
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-        $Q->next_result();
         $Q->free_result();
         
         return $return;
     }
-	
-	public function get_searched_group_by_company($filters) 
+        
+        public function get_searched_group_by_company($filters) 
     {
         $today = date('Y-m-d');
 
@@ -953,7 +934,7 @@ class Posted_job extends CI_Model
         
         return $this->db->get()->result();
 
-        // $Q = $this->db->query('CALL ft_search_jobs_group_by_company("' . $search . '", "' . $city . '", "' . $industry . '","' . $today . '")');
+        // $Q = $this->db->query('SELECT * FROM ft_search_jobs_group_by_company("' . $search . '", "' . $city . '", "' . $industry . '","' . $today . '")');
         
         // if ($Q->num_rows() > 0) {
         //    $return = $Q->result();
@@ -961,7 +942,6 @@ class Posted_job extends CI_Model
         //     $return = [];
         // }
 
-        // $Q->next_result();
         // $Q->free_result();
         
         // return $return;
@@ -1012,108 +992,100 @@ class Posted_job extends CI_Model
         
         return $this->db->get()->result();
 
-        // $Q = $this->db->query('CALL ft_search_jobs_group_by_industry("' . $search . '", "' . $city . '","' . $today . '")');
+        // $Q = $this->db->query('SELECT * FROM ft_search_jobs_group_by_industry("' . $search . '", "' . $city . '","' . $today . '")');
 
         // if ($Q->num_rows() > 0) {
         //     $return = $Q->result();
         // } else {
         //     $return = [];
         // }
-        // $Q->next_result();
         // $Q->free_result();
         // return $return;
     }
-	
-	public function get_searched_group_by_job_mode($param) {
+        
+        public function get_searched_group_by_job_mode($param) {
 
         $today = date('Y-m-d');
 
-        $Q = $this->db->query('CALL ft_search_jobs_group_by_job_mode("'.$param.'", "' . $today . '")');
+        $Q = $this->db->query('SELECT * FROM ft_search_jobs_group_by_job_mode("'.$param.'", "' . $today . '")');
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-        $Q->next_result();
         $Q->free_result();
         
         return $return;
     }
-	
-	public function ft_job_search_filter_3($param_city, $param_company_slug, $param_title, $per_page, $page) {
-       $Q = $this->db->query('CALL ft_job_search_filter_3("'.$param_city.'", "'.$param_company_slug.'", "'.$param_title.'", '.$page.', '.$per_page.')');
+        
+        public function ft_job_search_filter_3($param_city, $param_company_slug, $param_title, $per_page, $page) {
+       $Q = $this->db->query('SELECT * FROM ft_job_search_filter_3("'.$param_city.'", "'.$param_company_slug.'", "'.$param_title.'", '.$page.', '.$per_page.')');
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		
-		$Q->next_result();
+                
         $Q->free_result();
         return $return;
     }
-	
-	public function count_ft_job_search_filter_3($param_city, $param_company_slug, $param_title) {
-		$Q = $this->db->query('CALL count_ft_job_search_filter_3("'.$param_city.'", "'.$param_company_slug.'", "'.$param_title.'")');	
-		 if ($Q->num_rows() > 0) {
+        
+        public function count_ft_job_search_filter_3($param_city, $param_company_slug, $param_title) {
+                $Q = $this->db->query('SELECT * FROM count_ft_job_search_filter_3("'.$param_city.'", "'.$param_company_slug.'", "'.$param_title.'")');  
+                 if ($Q->num_rows() > 0) {
             $return = $Q->row('total');
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
-		
+                
     }
 
-	public function count_records_by_city($city_name) {
-		$Q = $this->db->query("CALL count_active_records_by_city_front_end('".$city_name."')");	
-		 if ($Q->num_rows() > 0) {
+        public function count_records_by_city($city_name) {
+                $Q = $this->db->query("SELECT * FROM count_active_records_by_city_front_end('".$city_name."')");        
+                 if ($Q->num_rows() > 0) {
             $return = $Q->row('total');
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
-		
-    }	
-	
-	public function job_search_by_city($param_city, $per_page, $page) {
-       $Q = $this->db->query('CALL job_search_by_city("'.$param_city.'", '.$page.', '.$per_page.')');
+                
+    }   
+        
+        public function job_search_by_city($param_city, $per_page, $page) {
+       $Q = $this->db->query('SELECT * FROM job_search_by_city("'.$param_city.'", '.$page.', '.$per_page.')');
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		
-		$Q->next_result();
+                
         $Q->free_result();
         return $return;
     }
-	
-	public function count_records_by_industry($industry_id) {
-		$Q = $this->db->query("CALL count_active_records_by_industry_front_end('".$industry_id."')");	
-		 if ($Q->num_rows() > 0) {
+        
+        public function count_records_by_industry($industry_id) {
+                $Q = $this->db->query("SELECT * FROM count_active_records_by_industry_front_end('".$industry_id."')");  
+                 if ($Q->num_rows() > 0) {
             $return = $Q->row('total');
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
-		
-    }	
-	
-	public function job_search_by_industry($param, $per_page, $page) {
-       $Q = $this->db->query('CALL job_search_by_industry("'.$param.'", '.$page.', '.$per_page.')');
+                
+    }   
+        
+        public function job_search_by_industry($param, $per_page, $page) {
+       $Q = $this->db->query('SELECT * FROM job_search_by_industry("'.$param.'", '.$page.', '.$per_page.')');
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		
-		$Q->next_result();
+                
         $Q->free_result();
         return $return;
     }

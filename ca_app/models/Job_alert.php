@@ -138,14 +138,13 @@ class Job_alert extends CI_Model {
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
 	}
 	
 	public function get_queue_list(){
 		$Q = $this->db->query("SELECT jaq.ID, pj.job_title, pj.job_slug, js.first_name, js.email, ji.industry_name 
-							  FROM `tbl_job_alert_queue` as jaq
+							  FROM tbl_job_alert_queue as jaq
 							  INNER JOIN tbl_post_jobs as pj ON pj.ID=jaq.job_ID
 							  INNER JOIN tbl_job_seekers as js ON js.ID=jaq.seeker_ID
 							  INNER JOIN tbl_job_industries as ji ON ji.ID=pj.industry_ID;");
@@ -154,14 +153,13 @@ class Job_alert extends CI_Model {
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;	
 	}
 	
 	public function get_queue_list_grouped(){
 		$Q = $this->db->query("SELECT jaq.ID, jaq.job_ID, pj.job_title, pj.job_slug, jaq.dated, COUNT(jaq.ID) as in_queue
-							  FROM `tbl_job_alert_queue` as jaq
+							  FROM tbl_job_alert_queue as jaq
 							  INNER JOIN tbl_post_jobs as pj ON pj.ID=jaq.job_ID
 							  GROUP BY jaq.job_ID");
         if ($Q->num_rows() > 0) {
@@ -169,7 +167,6 @@ class Job_alert extends CI_Model {
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;	
 	}

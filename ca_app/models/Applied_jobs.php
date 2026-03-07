@@ -175,25 +175,23 @@ class Applied_jobs extends CI_Model
     }
 	
 	public function get_applied_job_by_employer_id($employer_id, $per_page, $page) {
-        $Q = $this->db->query("CALL get_applied_jobs_by_employer_id(".$employer_id.", ".$page.",".$per_page.")");	
+        $Q = $this->db->query("SELECT * FROM get_applied_jobs_by_employer_id(".$employer_id.", ".$page.",".$per_page.")");	
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
 	
 	public function count_applied_job_by_employer_id($employer_id) {
-        $Q = $this->db->query("CALL count_applied_jobs_by_employer_id(".$employer_id.")");	
+        $Q = $this->db->query("SELECT * FROM count_applied_jobs_by_employer_id(".$employer_id.")");	
         if ($Q->num_rows() > 0) {
             $return = $Q->row('total');
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
@@ -205,25 +203,23 @@ class Applied_jobs extends CI_Model
     }
 	
 	public function get_applied_jobs_by_jobseeker_id($jobseeker_id, $per_page, $page) {
-        $Q = $this->db->query("CALL get_applied_jobs_by_jobseeker_id(".$jobseeker_id.", ".$page.",".$per_page.")");	
+        $Q = $this->db->query("SELECT * FROM get_applied_jobs_by_jobseeker_id(".$jobseeker_id.", ".$page.",".$per_page.")");	
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
 	
 	public function count_applied_job_jobseeker_id($jobseeker_id) {
-        $Q = $this->db->query("CALL count_applied_jobs_by_jobseeker_id(".$jobseeker_id.")");	
+        $Q = $this->db->query("SELECT * FROM count_applied_jobs_by_jobseeker_id(".$jobseeker_id.")");	
         if ($Q->num_rows() > 0) {
             $return = $Q->row('total');
         } else {
             $return = 0;
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }

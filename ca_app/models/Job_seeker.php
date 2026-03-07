@@ -185,26 +185,24 @@ class Job_seeker extends CI_Model
 	
 	public function get_all_applied_jobs_by_seekers_ID($employer_id, $per_page, $page)
     {
-        $Q = $this->db->query("CALL get_applied_jobs_by_seeker_id($employer_id, $page, $per_page)");
+        $Q = $this->db->query("SELECT * FROM get_applied_jobs_by_seeker_id($employer_id, $page, $per_page)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = [];
         }
-        $Q->next_result();
         $Q->free_result();
         return $return;
     }
 
 	public function get_experience_by_jobseeker_id($jobseeker_id)
     {
-        $Q = $this->db->query("CALL get_experience_by_jobseeker_id($jobseeker_id)");
+        $Q = $this->db->query("SELECT * FROM get_experience_by_jobseeker_id($jobseeker_id)");
         if ($Q->num_rows() > 0) {
             $return = $Q->result();
         } else {
             $return = array();
         }
-		$Q->next_result();
         $Q->free_result();
         return $return;
     }
@@ -227,7 +225,7 @@ class Job_seeker extends CI_Model
 	
 	public function get_grouped_skills_by_seeker_id($seeker_id)
     {
-		$Q = $this->db->query("SELECT GROUP_CONCAT(skill_name SEPARATOR ', ') as skills FROM `tbl_seeker_skills` where seeker_ID='".$seeker_id."'");	
+		$Q = $this->db->query("SELECT GROUP_CONCAT(skill_name SEPARATOR ', ') as skills FROM tbl_seeker_skills where seeker_ID='".$seeker_id."'");	
 		if ($Q->num_rows() > 0) {
             $return = $Q->row('skills');
         } else {
