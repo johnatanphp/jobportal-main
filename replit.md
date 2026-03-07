@@ -9,19 +9,57 @@ Proyecto basado en CodeIgniter 3 para búsqueda de empleo - configurado para Rep
 - **Frontend**: HTML5, CSS3, AdminLTE
 - **Gestor de paquetes**: Composer 2.x
 
+## Configuración de Replit
+
+- **Servidor**: `php -d memory_limit=512M -S 0.0.0.0:5000 router.php`
+- **Puerto**: 5000
+- **Entrada**: `router.php` → `index.php` (CodeIgniter)
+- **Dependencias**: Composer (ejecutar `composer install` si falta la carpeta `vendor/`)
+
+## Archivos de Configuración Creados
+
+1. **`ca_app/config/constants.php`** (no rastrear en git):
+   - Define `SITE_URL` dinámicamente usando `REPLIT_DEV_DOMAIN`
+   - Contiene credenciales SMTP, keys de API (LinkedIn, Facebook)
+
+2. **`ca_app/config/database.php`** (no rastrear en git):
+   - Driver: `postgre`
+   - Usa variables de entorno: `PGHOST`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`, `PGPORT`
+
+3. **`schema.sql`**:
+   - Esquema PostgreSQL completo generado desde los modelos
+   - Incluye todas las tablas necesarias para el funcionamiento del portal
+   - Incluye datos iniciales (países, ciudades, industrias, etc.)
+
 ## Cambios Realizados para Replit
 
 1. **Configuración de Base de Datos**:
-   - Archivo: `ca_app/config/database.php`
-   - Se cambió el driver de `mysqli` a `postgre`.
-   - Se usan variables de entorno (`PGHOST`, `PGUSER`, etc.) para la conexión.
+   - Driver: `postgre` (PostgreSQL nativo de Replit)
+   - Variables de entorno para conexión segura
 
-2. **Ajustes de Esquema (PostgreSQL)**:
-   - Las tablas fueron creadas citando los nombres de las columnas (ej: `"company_ID"`) para mantener compatibilidad con el código que espera camelCase, ya que PostgreSQL por defecto convierte todo a minúsculas.
-   - La columna `show` en `tbl_cities` fue citada por ser palabra reservada.
+2. **URL Dinámica**:
+   - `ca_app/config/constants.php` detecta automáticamente la URL usando `REPLIT_DEV_DOMAIN`
 
-3. **Compatibilidad de Consultas**:
-   - Se reemplazaron las llamadas `CALL procedure()` por consultas directas `$this->db->get()` en los modelos críticos (ej: `Posted_job.php`) para evitar incompatibilidades con los procedimientos almacenados de MySQL.
+3. **Esquema de Base de Datos**:
+   - Creado desde cero ya que no había SQL dump disponible
+   - Columnas corregidas para compatibilidad con el código:
+     - `tbl_post_jobs`: usa `sts`, `last_date`, `dated`, `is_featured`, `industry_ID`
+     - `tbl_companies`: usa `sts` para estado activo
+     - `tbl_logs`: incluye `session_data`, `get_data`, `post_data`, `server_data`
+     - `tbl_job_industries`: incluye `top_category`
 
-4. **URL Dinámica**:
-   - `ca_app/config/constants.php` detecta automáticamente la URL de Replit usando `REPLIT_DEV_DOMAIN`.
+4. **Dependencias de Composer**:
+   - `vendor/` instalado via `composer install --no-dev`
+   - Incluye: AWS SDK, mPDF, PhpSpreadsheet, GeoIP2, Spatie URL Signer
+
+## Variables de Entorno Requeridas
+
+- `PGHOST`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`, `PGPORT` - Conexión PostgreSQL (auto-configuradas)
+- `REPLIT_DEV_DOMAIN` - URL del dominio (auto-configurada)
+- Opcionales: `SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`, `ADMIN_EMAIL`
+
+## Notas de Compatibilidad
+
+- Las tablas usan comillas dobles para columnas con mayúsculas (ej: `"industry_ID"`)
+- PostgreSQL es case-sensitive con identificadores; las columnas en el código usan CamelCase
+- Los procedimientos almacenados MySQL (`CALL procedure()`) no son compatibles con PostgreSQL
