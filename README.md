@@ -26,10 +26,12 @@ Este archivo sirve como registro diario de los avances y cambios realizados en e
 ## Credenciales de Acceso (Demo)
 
 ### Empresa / Empleador
+- **URL Login:** `/employer/login`
 - **Email:** `empresa@demo.com`
 - **Password:** `Password123!`
 
 ### Candidato / Usuario
+- **URL Login:** `/login`
 - **Email:** `usuario@demo.com`
 - **Password:** `Password123!`
 
