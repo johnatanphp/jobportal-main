@@ -2,14 +2,16 @@
 // PHP built-in server router for CodeIgniter
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
-// Serve static files directly if they exist
-if ($uri !== '/' && file_exists(__DIR__ . '/public' . $uri)) {
+// Check if the file exists in the public directory
+$public_file = __DIR__ . '/public' . $uri;
+if ($uri !== '/' && file_exists($public_file) && !is_dir($public_file)) {
     return false; // serve the file as-is
 }
 
-// Also serve files from document root
-if ($uri !== '/' && file_exists(__DIR__ . $uri) && !is_dir(__DIR__ . $uri)) {
-    return false;
+// Check if the file exists in the root directory
+$root_file = __DIR__ . $uri;
+if ($uri !== '/' && file_exists($root_file) && !is_dir($root_file)) {
+    return false; // serve the file as-is
 }
 
 // All other requests go through CodeIgniter's index.php
