@@ -1,0 +1,77 @@
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Fatal error: Allowed memory size of 268435456 bytes exhausted (tried to allocate 96518736 bytes) in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 318
+
+Warning: Cannot modify header information - headers already sent by (output started at /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php:234) in /home/runner/workspace/ca_sys/core/Common.php on line 571
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Warning: pg_query(): Query failed: ERROR: column "server_data" of relation "tbl_logs" does not exist LINE 1: ...INTO "tbl_logs" ("type", "message", "created_at", "server_da... ^ in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 234
+
+Fatal error: Allowed memory size of 268435456 bytes exhausted (tried to allocate 24161680 bytes) in /home/runner/workspace/ca_sys/database/drivers/postgre/postgre_driver.php on line 318
