@@ -1,4 +1,4 @@
-modules = ["php"]
+modules = ["postgresql-16", "php"]
 [nix]
 channel = "stable-25_05"
 packages = ["unzip"]
@@ -16,7 +16,19 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
+args = "Run Job Portal"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
 args = "Start Server"
+
+[[workflows.workflow]]
+name = "Run Job Portal"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "php -S 0.0.0.0:8000 router.php"
 
 [[workflows.workflow]]
 name = "Start Server"
