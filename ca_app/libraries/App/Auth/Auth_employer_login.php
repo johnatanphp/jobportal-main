@@ -142,6 +142,9 @@ class Auth_employer_login
     
     private function verify_password($password_verify, $password)
     {
-        return (substr($password, 0, 7) == '$2y$10$' && verify_hashing($password_verify, $password)) || (substr($password, 0, 7) != '$2y$10$' && $password == $password_verify);        
+        if (substr($password, 0, 2) == '$2' && function_exists('password_verify')) {
+            return password_verify($password_verify, $password);
+        }
+        return $password == $password_verify;
     }
 }
