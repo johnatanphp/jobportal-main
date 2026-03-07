@@ -23,6 +23,18 @@ Este archivo sirve como registro diario de los avances y cambios realizados en e
 
 ---
 
+## Credenciales de Acceso (Demo)
+
+### Empresa / Empleador
+- **Email:** `empresa@demo.com`
+- **Password:** `Password123!`
+
+### Candidato / Usuario
+- **Email:** `usuario@demo.com`
+- **Password:** `Password123!`
+
+---
+
 ## Instrucciones de Uso
 1. Ejecutar el workflow **Start Application**.
 2. Acceder a la URL generada por Replit (puerto 8000).
