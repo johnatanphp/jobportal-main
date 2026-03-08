@@ -1,45 +1,25 @@
-# Portal de Empleo Overall - Diario de Trabajo
+# Portal de Empleo Overall - Sistema de Gestión de Empleo
 
-**Desarrollador:** Replit Agent
-
-Este archivo sirve como registro diario de los avances y cambios realizados en el proyecto.
-
----
-
-## Registro de Cambios Recientes
-
-### 07 de Marzo, 2026
-- **Integración de Usuarios**: Se crearon tablas y cuentas de demo para administrador, empresa y usuario.
-- **Configuración de Despliegue**: Se configuró el proyecto para despliegue en Replit con autoscaling.
-- **Documentación de Credenciales**: Se agregaron todas las rutas de login y credenciales de prueba en el README.
-
-### 06 de Marzo, 2026
-- **Migración a PostgreSQL**: Se configuró la base de datos nativa de Replit (PostgreSQL) y se adaptaron los archivos de configuración (`database.php`, `constants.php`).
-- **Corrección de Esquema**: Se crearon manualmente las tablas esenciales (`tbl_post_jobs`, `tbl_companies`, `tbl_countries`, `tbl_ad_codes`, `tbl_cities`, `tbl_job_industries`, `tbl_logs`) para asegurar el funcionamiento de la página de inicio.
-- **Refactorización de Modelos**: Se modificó el modelo `Posted_job.php` para reemplazar llamadas a procedimientos almacenados de MySQL por consultas SQL directas compatibles con PostgreSQL.
-- **Resolución de Errores**: 
-    - Se solucionó el error de "relation tbl_ad_codes does not exist".
-    - Se corrigió el problema de nombres de columnas en mayúsculas/minúsculas y palabras reservadas (`show` en `tbl_cities`).
-- **Documentación**: Se generó un nuevo `README.md` con la documentación principal y se actualizó `replit.md` con los detalles técnicos de la migración.
+Plataforma web basada en CodeIgniter 3 (PHP 8.2) para la gestión integrada de ofertas de empleo, candidatos y perfiles empresariales.
 
 ---
 
 ## Credenciales de Acceso (Demo)
 
 ### Administrador
-- **URL Login:** `/admin/login`
+- **URL:** `/admin/login`
 - **Email:** `admin@overall.pe`
-- **Password:** `Password123!`
+- **Contraseña:** `Password123!`
 
 ### Empresa / Empleador
-- **URL Login:** `/employer/login`
+- **URL:** `/company_login` (o `/employer-login`)
 - **Email:** `empresa@demo.com`
-- **Password:** `Password123!`
+- **Contraseña:** `Password123!`
 
 ### Candidato / Usuario (Job Seeker)
-- **URL Login:** `/login`
+- **URL:** `/login`
 - **Email:** `usuario@demo.com`
-- **Password:** `Password123!`
+- **Contraseña:** `Password123!`
 
 ---
 
@@ -47,31 +27,60 @@ Este archivo sirve como registro diario de los avances y cambios realizados en e
 
 - **Admin**: Acceso completo a panel de administración, gestión de empresas, usuarios y configuración del sistema.
 - **Empresa/Empleador**: Gestión de ofertas de empleo, candidatos, procesos de selección y reportes.
-- **Usuario/Cliente**: Búsqueda de empleos, aplicación a ofertas, gestión de perfil y documentos.
+- **Usuario/Candidato**: Búsqueda de empleos, aplicación a ofertas, gestión de perfil y documentos.
 
 ---
 
-## Instrucciones de Uso
+## Instrucciones de Inicio
 
-1. Ejecutar el workflow **Start Application**.
-2. Acceder a la URL generada por Replit (puerto 5000).
-3. Usar una de las credenciales demo según el rol que se desee probar.
+1. Verificar que el workflow **Start Application** está en ejecución
+2. Acceder a la URL generada por Replit (puerto 5000)
+3. Usar una de las credenciales demo según el rol deseado
+4. Las sesiones se mantienen mediante cookies de sesión
+
+---
+
+## Estructura de Tecnología
+
+- **Framework:** CodeIgniter 3
+- **PHP:** 8.2
+- **Base de Datos:** PostgreSQL (nativa de Replit)
+- **Frontend:** Bootstrap 4, jQuery, Select2
+
+---
+
+## Tablas Principales de Base de Datos
+
+| Tabla | Descripción |
+|-------|-------------|
+| `tbl_job_seekers` | Perfil de candidatos/usuarios |
+| `tbl_employers` | Perfil de empresas/empleadores |
+| `tbl_admin` | Administradores del sistema |
+| `tbl_post_jobs` | Ofertas de empleo publicadas |
+| `tbl_companies` | Datos empresariales |
+| `tbl_countries` | Países |
+| `tbl_cities` | Ciudades |
+| `tbl_job_industries` | Industrias/sectores |
+| `tbl_ad_codes` | Códigos de anuncios |
+| `tbl_logs` | Registros de auditoría |
+| `tbl_app_config` | Configuración global |
 
 ---
 
 ## Estado del Proyecto
 
-- ✅ Configuración de base de datos PostgreSQL
-- ✅ Creación de tablas principales
-- ✅ Cuentas de demo para pruebas
-- ✅ Configuración de despliegue
-- 🔄 **EN PROGRESO**: Corrección de errores PHP y optimización de sesiones para diferentes roles
+- ✅ Configuración PostgreSQL en Replit
+- ✅ Base de datos con tablas principales
+- ✅ Cuentas demo para todos los roles
+- ✅ Sistema de sesiones por rol
+- ✅ Formularios de login funcionales
+- 🔄 **En desarrollo:** Dashboards específicos por rol, integración de features
 
 ---
 
-## Próximos Pasos
+## Notas de Desarrollo
 
-- Revisar y corregir errores PHP en vistas de login
-- Optimizar sistema de sesiones y permisos por rol
-- Completar esquema de base de datos con tablas faltantes
-- Pruebas de funcionalidad end-to-end
+- **reCAPTCHA:** Actualmente deshabilitado para facilitar pruebas
+- **URLs de Login:** Ver sección "Credenciales de Acceso"
+- **Puerto:** La aplicación corre en puerto 5000
+- **Dominio dinámico:** Se detecta automáticamente via `REPLIT_DEV_DOMAIN`
