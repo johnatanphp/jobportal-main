@@ -1340,3 +1340,52 @@ INSERT INTO tbl_job_functional_areas ("ID", functional_area_name) VALUES
 ON CONFLICT ("ID") DO NOTHING;
 
 SELECT setval(pg_get_serial_sequence('tbl_job_functional_areas', 'ID'), 20, true);
+
+-- Schema fixes for Replit migration (added missing columns)
+ALTER TABLE tbl_logs ADD COLUMN IF NOT EXISTS session_data TEXT;
+ALTER TABLE tbl_logs ADD COLUMN IF NOT EXISTS get_data TEXT;
+ALTER TABLE tbl_logs ADD COLUMN IF NOT EXISTS post_data TEXT;
+
+ALTER TABLE tbl_post_jobs RENAME COLUMN industry_id TO "industry_ID" -- already applied;
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS city VARCHAR(255);
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS dated TIMESTAMP DEFAULT NOW();
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS last_date DATE;
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS is_featured SMALLINT DEFAULT 0;
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS sts VARCHAR(50) DEFAULT 'active';
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS pay VARCHAR(255);
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS "request_ID" INTEGER;
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS job_mode VARCHAR(100);
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS contact_person VARCHAR(255);
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS contact_email VARCHAR(255);
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS applications_count INTEGER DEFAULT 0;
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS viewer_count INTEGER DEFAULT 0;
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS job_ignore SMALLINT DEFAULT 0;
+ALTER TABLE tbl_post_jobs ADD COLUMN IF NOT EXISTS required_skills TEXT;
+
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS sts VARCHAR(50) DEFAULT 'active';
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS old_company_id INTEGER;
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS company_email VARCHAR(255);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS company_fax VARCHAR(100);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS company_folder VARCHAR(255);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS company_type VARCHAR(100);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS client_code VARCHAR(100);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS cod_business_unit VARCHAR(100);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS cod_clie VARCHAR(100);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS company_ceo VARCHAR(255);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS established_in VARCHAR(10);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS no_cia VARCHAR(50);
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS no_of_offices INTEGER DEFAULT 0;
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS system_internal SMALLINT DEFAULT 0;
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS "recruiter_ID" INTEGER;
+ALTER TABLE tbl_companies ADD COLUMN IF NOT EXISTS city_id INTEGER;
+
+ALTER TABLE tbl_employers ADD COLUMN IF NOT EXISTS first_name VARCHAR(255);
+ALTER TABLE tbl_employers ADD COLUMN IF NOT EXISTS last_name VARCHAR(255);
+ALTER TABLE tbl_employers ADD COLUMN IF NOT EXISTS country VARCHAR(255);
+ALTER TABLE tbl_employers ADD COLUMN IF NOT EXISTS sts VARCHAR(50) DEFAULT 'active';
+ALTER TABLE tbl_employers ADD COLUMN IF NOT EXISTS top_employer SMALLINT DEFAULT 0;
+ALTER TABLE tbl_employers ADD COLUMN IF NOT EXISTS "employer_ID" INTEGER;
+
+ALTER TABLE tbl_job_industries ADD COLUMN IF NOT EXISTS top_category VARCHAR(10) DEFAULT 'no';
+ALTER TABLE tbl_job_industries ADD COLUMN IF NOT EXISTS industry_icon VARCHAR(255);
+ALTER TABLE tbl_job_industries ADD COLUMN IF NOT EXISTS no_of_jobs INTEGER DEFAULT 0;
