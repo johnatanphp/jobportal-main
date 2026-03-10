@@ -49,13 +49,13 @@
   <div class="titlebar">      
     <?php 
       $s = $total_posted_jobs > 1 ? "s": "";
-      $total_info = "Hay <b>". $total_posted_jobs . "</b> empleo". $s . " abierto" . $s . " en <b>" . $country->country_name . "</b>";
+      $total_info = "Hay <b>". $total_posted_jobs . "</b> empleo". $s . " abierto" . $s . " en <b>" . $country->countryName . "</b>";
     ?>     
     <h3 class="job-title-info"><?php echo $total_info; ?></h3>
   
   </div>
   <div class="row joblist">
-    <?php	
+    <?php       
       if($latest_jobs_result):
         $i = 0;
         foreach($latest_jobs_result as $row_latest_jobs):
@@ -132,12 +132,12 @@
 <div class="featuredWrap">
 <div class="container">
     <div class="titlebar"> <h2>Empleos destacados</h2></div>
-    	<ul class="featureJobs row">
+        <ul class="featureJobs row">
           <?php
-					foreach($featured_job_result as $row_featured_job):
-			?>
+                                        foreach($featured_job_result as $row_featured_job):
+                        ?>
           <li class="col-md-6">
-          	<div class="intbox">
+                <div class="intbox">
             <div class="compnyinfo">
             <a href="<?php echo base_url('jobs/'.$row_featured_job->job_slug);?>" title="<?php echo $row_featured_job->job_title;?>"><?php echo $row_featured_job->job_title;?></a> <span><a href="<?php echo base_url('companies/'.$row_featured_job->company_slug);?>" title="Jobs in <?php echo $row_featured_job->company_name;?>"><?php echo $row_featured_job->company_name;?></a> &nbsp;-&nbsp; <?php echo $row_featured_job->city;?></span> </div>
             <div class="date">Apply by <br />

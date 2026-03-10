@@ -30,10 +30,6 @@ task = "shell.exec"
 args = "php -d memory_limit=512M -S 0.0.0.0:5000 router.php"
 waitForPort = 5000
 
-[[ports]]
-localPort = 5000
-externalPort = 80
-
 [deployment]
 deploymentTarget = "autoscale"
 run = ["php", "-d", "memory_limit=512M", "-S", "0.0.0.0:5000", "router.php"]
