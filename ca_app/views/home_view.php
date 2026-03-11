@@ -49,7 +49,8 @@
   <div class="titlebar">      
     <?php 
       $s = $total_posted_jobs > 1 ? "s": "";
-      $total_info = "Hay <b>". $total_posted_jobs . "</b> empleo". $s . " abierto" . $s . " en <b>" . $country->countryName . "</b>";
+      $country_name = isset($country->country_name) ? $country->country_name : (isset($country->countryName) ? $country->countryName : 'Peru');
+      $total_info = "Hay <b>". $total_posted_jobs . "</b> empleo". $s . " abierto" . $s . " en <b>" . $country_name . "</b>";
     ?>     
     <h3 class="job-title-info"><?php echo $total_info; ?></h3>
   
