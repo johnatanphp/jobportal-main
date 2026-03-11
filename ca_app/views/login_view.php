@@ -134,7 +134,6 @@
                     </div>
                   
                     <div class="col-md-12">
-                      <div id="grecaptcha-login-seeker"></div>
                       <input id="login-submit" type="submit" value="Iniciar sesión" class="btn btn-primary btn-block" />
                     </div>
                   </div>
@@ -172,10 +171,11 @@
     <?php $this->load->view('common/footer'); ?>
     <?php $this->load->view('common/before_body_close'); ?>
     <!--
-    <script src='https://www.google.com/recaptcha/api.js'></script>
     -->
-    <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback" async defer></script>
     <script type="text/javascript">
+    </script>
+  </body>
+</html>    <script type="text/javascript">
         function loginSeekerSubmit(e) {         
           var url = $( "#login-form" ).prop('action');
           var data = $( "#login-form" ).serialize();
@@ -199,27 +199,15 @@
             $( ".container-login-error", '#login-form' ).html('¡No se pudo realizar la solicitud!');
             btnSubmit.prop('disabled', false);
             btnSubmit.val('Iniciar sesión');
-          })
-          .always(function(){
-            grecaptcha.reset(0);
           });
         }
-
-        var CaptchaCallback = function() {
-          var sitekey = "<?php echo $this->config->item('google_recaptcha_api_invisible_site_key'); ?>";
-          grecaptcha.render('grecaptcha-login-seeker', {'sitekey' : sitekey,  'callback' : loginSeekerSubmit, 'size': 'invisible'});
-        };
 
         $(function(){
           $( "#login-form" ).submit(function(e){
             e.preventDefault();
-
-            if ($.trim($( "#email").val()) != '' && $.trim($( "#pass").val()) != '') {
-              grecaptcha.execute(0);
-            }
+            loginSeekerSubmit(e);
             return false;
           });
-
         });
     </script>
   </body>

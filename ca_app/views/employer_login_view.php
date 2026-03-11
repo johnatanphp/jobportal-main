@@ -174,28 +174,25 @@
                       </div>
                   </div>
                   
-                </div>
-                            
-              </div>
-            </div>
-          </div>
-        
-      </div>
-        <!--/Login--> 
+          var sitekey = "<?php echo $this->config->item('google_recaptcha_api_invisible_site_key'); ?>";
+          grecaptcha.render('grecaptcha-login-company', {'sitekey' : sitekey,  'callback' : loginCompanySubmit, 'size' : 'invisible'});
+        };
 
-      </div>
-    </div>
+        $(function(){
+          $( "#company-login-form" ).submit(function(e){
+            e.preventDefault();
 
-    <?php $this->load->view('common/bottom_ads');?>
-    <!--Footer-->
-    <?php $this->load->view('common/footer'); ?>
-    <?php $this->load->view('common/before_body_close'); ?>
-    <!--
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    -->
-    <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback" async defer></script>
-    <script type="text/javascript">
-        function loginCompanySubmit(e) {
+            if ($.trim($( "#company-email").val()) != '' && $.trim($( "#company-pass").val()) != '') {
+              grecaptcha.execute(0);
+            }
+
+            return false;
+          });
+        });
+    </script>
+  </body>
+</html>    <script type="text/javascript">
+        function loginEmployerSubmit(e) {         
           var url = $( "#company-login-form" ).prop('action');
           var data = $( "#company-login-form" ).serialize();
 
@@ -218,25 +215,13 @@
             $( ".container-login-error", '#company-login-form' ).html('¡No se pudo realizar la solicitud!');
             btnSubmit.prop('disabled', false);
             btnSubmit.val('Iniciar sesión');
-          })
-          .always(function(){
-            grecaptcha.reset(0);
           });
         }
-
-        var CaptchaCallback = function() {
-          var sitekey = "<?php echo $this->config->item('google_recaptcha_api_invisible_site_key'); ?>";
-          grecaptcha.render('grecaptcha-login-company', {'sitekey' : sitekey,  'callback' : loginCompanySubmit, 'size' : 'invisible'});
-        };
 
         $(function(){
           $( "#company-login-form" ).submit(function(e){
             e.preventDefault();
-
-            if ($.trim($( "#company-email").val()) != '' && $.trim($( "#company-pass").val()) != '') {
-              grecaptcha.execute(0);
-            }
-
+            loginEmployerSubmit(e);
             return false;
           });
         });
