@@ -93,11 +93,7 @@ class Auth_employer_login
             }
         }
 
-        // Verificación de empresa - Verificar status del usuario es suficiente
-        // Comentado para simplificar el flow de login
-        
-        // $company = $this->Company->find($user->company_id);
-        // if (!$company) { ... }
+        // Verificación simplificada - solo verificamos el status del usuario
 
         $active_profiles = $user ? $this->Employer_profile->get_active_profiles($user->ID) : [];
         
