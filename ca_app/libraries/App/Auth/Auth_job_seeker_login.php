@@ -92,13 +92,11 @@ class Auth_job_seeker_login
         }
 
         $data_user_update = [
-            'last_login_date' => date('Y-m-d H:i:s'), 
             'login_attempts' => 0,
             'blocked_at' => null
         ];
 
         if (empty($user->first_login_date)) {
-            $data_user_update['first_login_date'] = date('Y-m-d H:i:s'); 
         }
 
         $this->db->where('ID', $user->ID);
