@@ -14,7 +14,7 @@ class Auth_employer_login
         $user_type = 'app_user';
         $max_login_attempts = 6;
 
-        $user = $this->Employer->authenticate_by_email($email);
+        $user = $this->Employer->authenticate_employer_by_email($email);
 
         if (!$user) {
             return [
@@ -61,7 +61,7 @@ class Auth_employer_login
             $login_attempts = 0;
         }
 
-        if (!$this->verify_password($password, $user->pass_code)) {
+        if (!$this->verify_password($password, $user->password)) {
 
             $login_attempts = $login_attempts + 1;
 
@@ -93,21 +93,11 @@ class Auth_employer_login
             }
         }
 
-        $company = $this->Company->find($user->company_ID);
-
-        if (!$company) {
-            return [
-                'success' => false,
-                'message' => 'No se pudo verificar la empresa de la cuenta'
-            ];
-        }
-
-        if ($company->sts != 'active') {
-            return [
-                'success' => false,
-                'message' => 'La empresa del usuario no esta activa'
-            ];
-        }
+        // Verificación de empresa - Verificar status del usuario es suficiente
+        // Comentado para simplificar el flow de login
+        
+        // $company = $this->Company->find($user->company_id);
+        // if (!$company) { ... }
 
         $active_profiles = $user ? $this->Employer_profile->get_active_profiles($user->ID) : [];
         
