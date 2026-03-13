@@ -59,7 +59,7 @@ class Auth_employer extends CI_Controller
                         echo json_encode([
                                 'success' => true,
                                 'message' => $data_login['message'],
-                                'redirect' => $redirect
+                                'redirect' => site_url($redirect)
                         ]);
 
                         return;
